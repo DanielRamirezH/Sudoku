@@ -2,11 +2,8 @@
 """
 ProgIIIG101-202502-Sudoku
 """
-
-import itertools as it
 import copy
 import time
-import os
 
 cols = "ABCDEFGHI"
 rows = range(1, 10)
@@ -25,11 +22,7 @@ def loadBoard(fileName, domains):
             for key in domains:
                 domains[key] = set(range(1, 10))
             
-            # Leer archivo
-            # El archivo tiene 81 líneas.
-            # Orden: A1, B1, C1... I1, A2... (según el código original que iteraba keys)
-            # Pero var_doms keys dependen del orden de inserción o creación.
-            # Mejor asegurar el orden.
+        
             ordered_keys = [f"{c}{r}" for r in rows for c in cols]
             
             lines = f.readlines()
@@ -141,7 +134,7 @@ def backtrack(domains):
         return None # No debería pasar si is_solved es False
     
     # 4. Probar valores
-    # Ordenar valores (se puede mejorar con LCV)
+    # Ordenar valores 
     values = list(domains[var])
     
     for val in values:
